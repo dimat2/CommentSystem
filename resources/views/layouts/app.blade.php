@@ -1,31 +1,43 @@
-<!doctype html>
-<html lang="en" xmlns:livewire="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <livewire:styles />
-    <livewire:scripts />
-</head>
-<body class="flex flex-wrap justify-center">
-    <div class="flex w-full justify-between px-4 bg-purple-900 text-white">
-        <a class="mx-3 py-4" href="{{ url("/") }}">Home</a>
-        @auth
-            <livewire:logout />
-        @endauth
-        @guest
-            <div class="py-4">
-                <a class="mx-3" href="{{ url("/login") }}">Login</a>
-                <a class="mx-3" href="{{ url("/register") }}">Register</a>
-            </div>
-        @endguest
-    </div>
-    <div class="my-10 w-full flex justify-center">
-        @yield('content')
-    </div>
-</body>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        @livewireStyles
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    </head>
+    <body class="font-sans antialiased">
+    @livewireScripts
+        <div class="min-h-screen bg-gray-100">
+            @livewire('navigation-dropdown')
+
+            <!-- Page Heading -->
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+
+        @stack('modals')
+    </body>
 </html>

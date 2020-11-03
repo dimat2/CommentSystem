@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'asset_url'  => "http://localhost/Attet/public",
+    'asset_url'  => "http://commentsystemlaravel.herokuapp.com",
 
     /*
     |--------------------------------------------------------------------------

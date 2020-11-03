@@ -1,7 +1,7 @@
 <div>
     <h1 class="text-3xl">Comments</h1>
     @error("newComment")
-        <span class="text-red-500 text-xs">{{ $message }}</span>
+    <span class="text-red-500 text-xs">{{ $message }}</span>
     @enderror
     <div>
         @if (session()->has("msg"))
